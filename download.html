@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jengu Digital Download</title>
+    <!-- Link your CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="text-jengu font-bold text-xl">JENGU</div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="p-8 text-center">
+        <h1 class="text-2xl font-bold">Jengu Digital Download</h1>
+        <p id="status-msg" class="mt-4">Verifying device and payment...</p>
+        <button id="dl-btn" class="hidden btn-primary mt-4">
+            Download album.zip
+        </button>
+    </div>
+
+    <!-- JS files -->
+    <script src="js/device.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        async function initDownload() {
+            const hash = await getDeviceFingerprint();
+            const token = localStorage.getItem('token');
+
+            // Use your Render backend URL
+            const API_BASE_URL = "https://jengu-backend.onrender.com";
+
+            const res = await fetch(`${API_BASE_URL}/api/download/request-link`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': token 
+                },
+                body: JSON.stringify({ deviceHash: hash })
+            });
+
+            const data = await res.json();
+            if (data.downloadUrl) {
+                document.getElementById('status-msg').innerHTML = '<span class="text-jengu">Device Authorized!</span>';
+                const btn = document.getElementById('dl-btn');
+                btn.classList.remove('hidden');
+                btn.onclick = () => window.location.href = data.downloadUrl;
+            } else {
+                document.getElementById('status-msg').innerText = data.error;
+            }
+        }
+
+        initDownload();
+    </script>
+</body>
+</html>
