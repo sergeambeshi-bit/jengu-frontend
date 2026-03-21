@@ -1,164 +1,255 @@
 /* ============================
-   GLOBAL STYLES
+   VARIABLES
 ============================ */
 :root {
     --jengu-primary: #01d4ab;
-    --dark: #0e0e0e;
-    --light: #ffffff;
-    --text-muted: #d0d0d0;
-}
-
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #fafafa;
-    color: #222;
-}
-
-h1, h2 {
-    margin: 0;
+    --jengu-secondary: #ff5a5f;
+    --bg-light: #f9f9f9;
+    --bg-dark: #111;
+    --text-dark: #222;
+    --text-light: #fff;
+    --text-muted: #888;
+    --radius: 8px;
+    --transition: 0.3s;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
 }
 
 /* ============================
-   HERO SECTION
+   GLOBAL
+============================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+}
+
+a {
+    text-decoration: none;
+    color: var(--jengu-primary);
+    transition: color var(--transition);
+}
+a:hover { color: var(--jengu-secondary); }
+
+/* ============================
+   NAVIGATION
+============================ */
+.nav-bar {
+    background: var(--bg-light);
+    border-bottom: 2px solid var(--jengu-primary);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-bar .text-jengu {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--jengu-primary);
+}
+
+/* ============================
+   HERO
 ============================ */
 .hero {
     position: relative;
     height: 80vh;
-    overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
 .hero-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(55%);
+    filter: brightness(60%);
+    transition: transform var(--transition);
+}
+
+.hero:hover .hero-img {
+    transform: scale(1.05);
 }
 
 .hero-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom,
-                rgba(0,0,0,0.3),
-                rgba(0,0,0,0.7));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
 }
 
 .hero-text {
     position: absolute;
     text-align: center;
-    color: white;
+    color: var(--text-light);
     padding: 20px;
 }
 
 .hero-text h1 {
     font-size: 3rem;
-    font-weight: 800;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
 }
 
 .hero-btn {
-    margin-top: 20px;
-    display: inline-block;
+    background: var(--jengu-primary);
+    color: var(--text-light);
+    padding: 14px 30px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: background var(--transition);
+}
+
+.hero-btn:hover {
+    background: var(--jengu-secondary);
 }
 
 /* ============================
-   GENERAL SECTIONS
+   SECTIONS
 ============================ */
 .section {
-    padding: 60px 20px;
     max-width: 900px;
     margin: auto;
+    padding: 60px 20px;
 }
 
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
     text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--jengu-primary);
+    margin: 10px auto 0 auto;
+    border-radius: var(--radius);
 }
 
 /* ============================
    TRACKLIST
 ============================ */
 .tracklist {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .track {
     background: white;
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 14px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    padding: 16px 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.track:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.1);
 }
 
 .track span {
     font-weight: 600;
 }
 
+/* AUDIO PLAYER */
 .track audio {
     width: 100%;
-    margin-top: 8px;
+    border-radius: var(--radius);
 }
 
 /* ============================
-   PAYMENT
+   PURCHASE
 ============================ */
 .price {
     text-align: center;
     font-size: 1.4rem;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
 .payment-box {
-    margin-top: 24px;
-    padding: 20px;
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 .payment-box input {
-    width: 100%;
-    padding: 14px;
+    padding: 12px;
     font-size: 1rem;
-    margin-bottom: 16px;
-    border-radius: 6px;
+    border-radius: var(--radius);
     border: 1px solid #ccc;
 }
 
-.full {
-    width: 100%;
-    margin-bottom: 12px;
+.btn-primary, .btn-secondary {
+    padding: 12px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 1rem;
+    border: none;
 }
 
 .btn-primary {
     background: var(--jengu-primary);
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background: var(--jengu-secondary);
 }
 
 .btn-secondary {
     background: #222;
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-weight: 600;
+    color: var(--text-light);
+}
+
+.btn-secondary:hover {
+    background: #444;
 }
 
 .divider {
     text-align: center;
-    margin: 10px 0;
-    color: #666;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 8px 0;
 }
 
 /* ============================
@@ -167,16 +258,33 @@ h1, h2 {
 .footer {
     text-align: center;
     padding: 20px;
-    background: #111;
+    background: var(--bg-dark);
     color: #bbb;
     margin-top: 40px;
+    font-size: 0.9rem;
 }
 
 /* ============================
    RESPONSIVE
 ============================ */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .hero-text h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
+    }
+    .hero-text p {
+        font-size: 1rem;
+    }
+    .payment-box {
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    .hero-text p {
+        font-size: 0.9rem;
     }
 }
