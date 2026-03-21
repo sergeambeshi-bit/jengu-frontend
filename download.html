@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jengu Digital Download</title>
-    <!-- Link your CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Use relative path for CSS -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -22,9 +22,9 @@
         </button>
     </div>
 
-    <!-- JS files -->
-    <script src="js/device.js"></script>
-    <script src="js/script.js"></script>
+    <!-- JS files with relative paths -->
+    <script src="./js/device.js"></script>
+    <script src="./js/script.js"></script>
     <script>
         async function initDownload() {
             const hash = await getDeviceFingerprint();
