@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MBOKO FOREVER – Jengu Album</title>
-    <!-- Use relative path for CSS -->
     <link rel="stylesheet" href="./css/style.css">
 </head>
-
 <body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav-bar">
+        <div class="text-jengu font-bold text-xl">JENGU</div>
+    </nav>
 
     <!-- HERO SECTION -->
     <header class="hero">
-        <!-- Use relative path for hero image -->
         <img src="./assets/mboko-forever.png" class="hero-img" alt="MBOKO FOREVER">
         <div class="hero-overlay"></div>
 
@@ -23,10 +25,9 @@
         </div>
     </header>
 
-    <!-- TRACKLIST -->
+    <!-- TRACKLIST SECTION -->
     <section class="section">
         <h2 class="section-title">Tracklist</h2>
-
         <div class="tracklist">
             <div class="track">
                 <span>1. Intro – Mboko Spirit</span>
@@ -54,27 +55,51 @@
         <p class="price">Price: <strong>5000 XAF</strong></p>
 
         <div class="payment-box">
-
-            <input id="phone"
-                   type="text"
-                   placeholder="Enter Mobile Money Number">
+            <input id="phone" type="text" placeholder="Enter Mobile Money Number">
 
             <button onclick="payWithNokash()" class="btn-primary full">Pay with Mobile Money</button>
 
             <div class="divider">OR</div>
 
-            <button onclick="payWithBandcamp()" class="btn-secondary full">
-                Pay with Card (Bandcamp)
-            </button>
+            <button onclick="payWithBandcamp()" class="btn-secondary full">Pay with Card</button>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <p>© 2024 Jengu Music. All rights reserved.</p>
     </footer>
 
-    <!-- Use relative paths for JS -->
+    <!-- JS FILES -->
     <script src="./js/device.js"></script>
     <script src="./js/script.js"></script>
+
+    <!-- OPTIONAL: Download page verification -->
+    <script>
+        async function initDownload() {
+            const hash = await getDeviceFingerprint();
+            const token = localStorage.getItem('token');
+            const API_BASE_URL = "https://jengu-backend.onrender.com";
+
+            const res = await fetch(`${API_BASE_URL}/api/download/request-link`, {
+                method: 'POST',
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': token 
+                },
+                body: JSON.stringify({ deviceHash: hash })
+            });
+
+            const data = await res.json();
+            if (data.downloadUrl) {
+                console.log('Device authorized for download:', data.downloadUrl);
+            } else {
+                console.log('Device verification failed:', data.error);
+            }
+        }
+
+        // Uncomment if you want automatic device verification
+        // initDownload();
+    </script>
 </body>
 </html>
