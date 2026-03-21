@@ -1,65 +1,182 @@
-/* ================================
-   Jengu Custom Theme
-================================= */
-
+/* ============================
+   GLOBAL STYLES
+============================ */
 :root {
     --jengu-primary: #01d4ab;
+    --dark: #0e0e0e;
+    --light: #ffffff;
+    --text-muted: #d0d0d0;
 }
 
-/* Background, Text, Border Utilities */
-.bg-jengu { background-color: var(--jengu-primary); }
-.text-jengu { color: var(--jengu-primary); }
-.border-jengu { border-color: var(--jengu-primary); }
-
-/* Button Styling */
-.btn-primary {
-    background-color: var(--jengu-primary);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 4px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #222;
 }
 
-.btn-primary:hover {
-    background-color: #01c49a; /* Slightly darker on hover */
+h1, h2 {
+    margin: 0;
 }
 
-/* Navigation Bar */
-.nav-bar {
-    background-color: white;
-    border-bottom: 2px solid var(--jengu-primary);
-    padding: 1rem;
+/* ============================
+   HERO SECTION
+============================ */
+.hero {
+    position: relative;
+    height: 80vh;
+    overflow: hidden;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
-/* Main Content Utilities */
-.main-content {
-    padding: 2rem;
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(55%);
+}
+
+.hero-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+                rgba(0,0,0,0.3),
+                rgba(0,0,0,0.7));
+}
+
+.hero-text {
+    position: absolute;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.hero-btn {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/* ============================
+   GENERAL SECTIONS
+============================ */
+.section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-/* Album Art Box */
-.album-art {
-    border: 4px solid var(--jengu-primary);
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
+/* ============================
+   TRACKLIST
+============================ */
+.tracklist {
+    margin-top: 20px;
 }
 
-/* Input Fields */
-input[type="text"], input[type="email"], input[type="password"] {
-    padding: 8px;
+.track {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.track span {
+    font-weight: 600;
+}
+
+.track audio {
+    width: 100%;
+    margin-top: 8px;
+}
+
+/* ============================
+   PAYMENT
+============================ */
+.price {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.payment-box {
+    margin-top: 24px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+.payment-box input {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    margin-bottom: 16px;
+    border-radius: 6px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 200px;
-    margin-bottom: 0.5rem;
 }
 
-/* Hidden Utility */
-.hidden { display: none; }
+.full {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    background: var(--jengu-primary);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background: #222;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.divider {
+    text-align: center;
+    margin: 10px 0;
+    color: #666;
+}
+
+/* ============================
+   FOOTER
+============================ */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #111;
+    color: #bbb;
+    margin-top: 40px;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+@media (max-width: 600px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+}
