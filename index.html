@@ -3,35 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jengu Album</title>
-    <!-- Link your CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>MBOKO FOREVER – Jengu Album</title>
+    <!-- Use relative path for CSS -->
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="nav-bar">
-        <div class="text-jengu font-bold text-xl">JENGU</div>
-    </nav>
 
-    <!-- Main Content -->
-    <div class="main-content text-center p-10">
-        <h1 class="text-3xl font-bold mb-4">Get the Album</h1>
-        <div class="album-art mb-6" style="border: 4px solid #01d4ab; width: 200px; height: 200px; margin: 0 auto;">
-            <!-- Album Cover -->
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <!-- Use relative path for hero image -->
+        <img src="./assets/mboko-forever.png" class="hero-img" alt="MBOKO FOREVER">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-text">
+            <h1>MBOKO FOREVER</h1>
+            <p>The new digital album by Jengu</p>
+            <a href="#purchase" class="btn-primary hero-btn">Get the Album</a>
         </div>
+    </header>
 
-        <div id="payment-section">
-            <p class="mb-4">Price: 5000 XAF</p>
-            <input type="text" id="phone" placeholder="Mobile Money Number" class="border p-2 mb-2"><br>
-            <button onclick="payWithNokash()" class="btn-primary">Pay with Mobile Money</button>
-            <div class="mt-4">
-                <a href="#" class="text-jengu underline">Or pay with Card</a>
+    <!-- TRACKLIST -->
+    <section class="section">
+        <h2 class="section-title">Tracklist</h2>
+
+        <div class="tracklist">
+            <div class="track">
+                <span>1. Intro – Mboko Spirit</span>
+                <audio controls src="./samples/track1.mp3"></audio>
+            </div>
+            <div class="track">
+                <span>2. Roots of the River</span>
+                <audio controls src="./samples/track2.mp3"></audio>
+            </div>
+            <div class="track">
+                <span>3. Jengu Rising</span>
+                <audio controls src="./samples/track3.mp3"></audio>
+            </div>
+            <div class="track">
+                <span>4. Mboko Forever</span>
+                <audio controls src="./samples/track4.mp3"></audio>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Link JS files at the end of body -->
-    <script src="js/device.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <!-- PURCHASE SECTION -->
+    <section class="section" id="purchase">
+        <h2 class="section-title">Buy the Album</h2>
+
+        <p class="price">Price: <strong>5000 XAF</strong></p>
+
+        <div class="payment-box">
+
+            <input id="phone"
+                   type="text"
+                   placeholder="Enter Mobile Money Number">
+
+            <button onclick="payWithNokash()" class="btn-primary full">Pay with Mobile Money</button>
+
+            <div class="divider">OR</div>
+
+            <button onclick="payWithBandcamp()" class="btn-secondary full">
+                Pay with Card (Bandcamp)
+            </button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2024 Jengu Music. All rights reserved.</p>
+    </footer>
+
+    <!-- Use relative paths for JS -->
+    <script src="./js/device.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
